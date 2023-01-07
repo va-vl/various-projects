@@ -1,4 +1,4 @@
-# game-of-life
+# game-of-life -- WORK IN PROGRESS, HERE BE MONSTERS
 
 Typescript implementation of Conway's Game of Life. 
 
