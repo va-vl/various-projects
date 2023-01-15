@@ -9,6 +9,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
   isRunning,
 }) => {
   const [field, setField] = useState<CellState[][]>([[]]);
+  const [generation, setGeneration] = useState(0);
   const running = useRef<number | undefined>(undefined);
 
   const onFieldClick = useCallback(
@@ -58,6 +59,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
           })
         )
       );
+      setGeneration((current) => current + 1);
     }, 2000);
   }, []);
 
@@ -67,6 +69,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
     setField(
       [...new Array(fieldSize)].map(() => [...new Array(fieldSize)].fill(0))
     );
+    setGeneration(0);
   }, [fieldSize]);
 
   useEffect(() => {
@@ -79,6 +82,7 @@ const Field: React.FunctionComponent<FieldProps> = ({
 
   return (
     <div>
+      <p>Generation: {generation}</p>
       {field.map((row, rowIndex) => (
         <div
           key={rowIndex}
