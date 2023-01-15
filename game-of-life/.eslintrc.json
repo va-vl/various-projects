@@ -3,25 +3,22 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "xo",
-    "overrides": [
-        {
-            "extends": [
-                "xo-typescript"
-            ],
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ]
-        }
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
       "project": ["./tsconfig.json"]
     },
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "react"],
     "rules": {
       "no-console": "warn",
-      "prettier/prettier": "error"
+      "prettier/prettier": "warn",
+      "react/jsx-sort-props": ["error", {
+        "multiline": "last",
+        "reservedFirst": true
+      }],
+      "react/react-in-jsx-scope": "off"
     }
 }
