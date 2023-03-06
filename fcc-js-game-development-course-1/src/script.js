@@ -8,7 +8,7 @@ import {
   STATE_FRAMES,
   spriteAnimations,
 } from "./constants";
-import { Model } from "./model";
+import { Model } from "./Model";
 
 const model = Model.init(Object.keys(STATE_FRAMES)[0] || "idle");
 
