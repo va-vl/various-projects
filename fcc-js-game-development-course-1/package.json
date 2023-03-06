@@ -1,0 +1,16 @@
+{
+  "name": "fcc-js-game-development-course-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "source": "index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
