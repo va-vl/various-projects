@@ -3,48 +3,55 @@ export class View {
   #canvasWidth;
   #ctx;
   #currentFrameIndex;
-  #staggerFrames;
 
-  constructor(node, width, height, staggerFrames) {
+  constructor(node, width, height) {
+    node.width = width;
+    node.height = height;
+
     this.#canvasHeight = height;
     this.#canvasWidth = width;
     this.#ctx = node.getContext("2d");
     this.#currentFrameIndex = 0;
-    this.#staggerFrames = staggerFrames;
   }
 
   #clear() {
     this.#ctx.clearRect(0, 0, this.#canvasWidth, this.#canvasHeight);
   }
 
+  clearCurrentFrameIndex() {
+    this.#currentFrameIndex = 0;
+  }
+
   #drawImage(...args) {
     this.#ctx.drawImage(...args);
   }
 
-  animate(frames, state, image, spriteWidth, spriteHeight) {
+  animate(animationFrames, stateManager) {
     this.#clear();
 
-    const framesState = frames.getState(state);
+    const state = stateManager.getCurrentState();
+    const framesState = animationFrames.getAnimationFramesForState(state);
+
     const position =
-      Math.floor(this.#currentFrameIndex / this.#staggerFrames) %
+      Math.floor(this.#currentFrameIndex / animationFrames.staggerFrames) %
       framesState.length;
 
     this.#drawImage(
-      image,
-      spriteWidth * position,
+      animationFrames.image,
+      animationFrames.spriteWidth * position,
       framesState[position].y,
-      spriteWidth,
-      spriteHeight,
+      animationFrames.spriteWidth,
+      animationFrames.spriteHeight,
       0,
       0,
-      spriteWidth,
-      spriteHeight
+      animationFrames.spriteWidth,
+      animationFrames.spriteHeight
     );
 
     this.#currentFrameIndex += 1;
 
     requestAnimationFrame(() => {
-      this.animate(frames, state, image, spriteWidth, spriteHeight);
+      this.animate(animationFrames, stateManager);
     });
   }
 
