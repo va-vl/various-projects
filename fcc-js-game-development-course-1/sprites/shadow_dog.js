@@ -1,4 +1,4 @@
-export const SPRITE_URL = new URL("../assets/shadow_dog.png", import.meta.url);
+export const SPRITE_URL = new URL("./shadow_dog.png", import.meta.url);
 export const SPRITE_WIDTH = 575;
 export const SPRITE_HEIGHT = 523;
 export const ANIMATION_FRAMES = {
